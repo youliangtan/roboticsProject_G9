@@ -55,7 +55,7 @@ def home():
     #     print("yes, input is received!")
     print("Reminder: Run it in the right working Dir as python code")
     return render_template('index.html')
-
+#hihi
 @app.route('/display', methods  = ['GET', 'POST'])
 def display():
     return render_template('display.html')
@@ -78,4 +78,4 @@ def send():
 if __name__ == "__main__":
     # app.run(host= '0.0.0.0', port=8800)
     # app.run(host= '192.168.1.132', port=8888, debug=False)
-    app.run(host= '10.27.43.31', port=8080, debug=False)
+    app.run(host= '10.27.35.133', port=8080, debug=False)

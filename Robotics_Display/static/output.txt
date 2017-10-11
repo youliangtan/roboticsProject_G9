@@ -1,1 +1,1 @@
-COFFEE, 1 Toast, 1 Egg
+TEA, 0 Toast, 2 Egg
