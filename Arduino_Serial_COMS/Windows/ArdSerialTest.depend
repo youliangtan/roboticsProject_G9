@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1507811214 source:c:\users\user\desktop\usb_test\ardserialtest\ardsensor.cpp
+	"ArdSensor.h"
+	<sstream>
+	<stdio.h>
+	<string>
+	<iostream>
+	<windows.h>
+	<stdlib.h>
+
+1507810871 c:\users\user\desktop\usb_test\ardserialtest\ardsensor.h
+	<windows.h>
+	<stdio.h>
+	<string>
+
+1506149755 source:c:\users\user\desktop\usb_test\ardserialtest\serialtest.cpp
+	<stdio.h>
+	"ArdSensor.h"
+	<windows.h>
+
+1507811074 source:c:\users\user\desktop\usb_test\ardserialtest\ardserialtest.cpp
+	<stdio.h>
+	<string>
+	<iostream>
+	"ArdSensor.h"
+
