@@ -11,7 +11,7 @@ class arduSensor
         virtual ~arduSensor();
         char outgoingData[256];
         char incomingData[256];
-	int writeData(const char* dataOut);
+	    int writeData(const char* dataOut);
         int readData(char* dataIn);
         int ardRead(const char* mode);
 
@@ -19,7 +19,7 @@ class arduSensor
 
     private:
         int fd;
-	int error;
+	    int error;
 
 };
 
