@@ -53,8 +53,11 @@ def home():
 
     #     selection = request.form['selection']
     #     print("yes, input is received!")
+    with open("./static/output.txt", 'w') as outfile:
+        outfile.write('')    
     print("Reminder: Run it in the right working Dir as python code")
     return render_template('index.html')
+
 #hihi
 @app.route('/display', methods  = ['GET', 'POST'])
 def display():
