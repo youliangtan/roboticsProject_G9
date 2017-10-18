@@ -1,0 +1,6 @@
+﻿  ConsoleApplication8.cpp
+c:\users\user\desktop\new folder\bread\consoleapplication8\consoleapplication8.cpp(52): warning C4477: 'scanf' : format string '%d' requires an argument of type 'int *', but variadic argument 1 has type 'int'
+c:\users\user\desktop\new folder\bread\consoleapplication8\consoleapplication8.cpp(52): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1272): note: see declaration of 'scanf'
+c:\users\user\desktop\new folder\bread\consoleapplication8\consoleapplication8.cpp(65): error C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.15063.0\ucrt\stdio.h(1272): note: see declaration of 'scanf'
