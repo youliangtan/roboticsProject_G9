@@ -1,41 +1,84 @@
-#include <iostream>
-#include <stdio.h>
+#include "stdafx.h"
+#include<stdio.h>
+#include<fstream>
+#include<iostream>
 
-using namespace std;
+namespace std;
 
 int main()
 {
-    /*user start to input number of bread, number of eggs, number of cups
+	/*user input number of bread,number of cup,tea or coffee*/
+	/*Read a txt file */
 
-    if(Nb==2)
-    {
-      bread1();       take bread to a certain position in tray
-      bread2();       take 2nd bread to different position in tray
-      signal1();      after breads taken, write a txt file to tell user the process of taking bread is completed.
-    }
+	ifstream fp;
+	fp.open("Choice.txt");
 
-    else
-    {
-     bread1();
-     signal1();
-    }
+	if{
 
-    if(Ne==2)
-    {
-      egg1();    Put 1st eggs into a position in tray
-      egg2();    Put 2nd eggs into different position in tray
-      signal2();  send signal so that user aware the 2nd process is completed
+	}
 
-    }
 
-    else
-    {
-     egg1();
-     signal2();
-    }
 
-    cup();      Put a cup to a position in tray
-    signal3()   send signal so that user aware the process is completed*/
 
-    return 0;
+
+
+	/*for bread*/
+	for (i = 1; i < numBread; i++)
+	{
+		startPos = ultraRead();
+		writeUI("Bread");
+		funcm("Bread", startPos, NULL);
+
+	}
+
+	/*for egg*/
+	for (i = 1; i < numEgg; i++)
+	{
+		writeUI("Egg");
+		funcm("Egg", NULL, i + 1);
+
+	}
+
+	/*for drinks*/
+	writeUI("Drink");
+	funcm("Drink", NULL, NULL);
+
+
+
+	/*Read ultrasonic reading of bread*/
+	ultraRead()
+	{
+		distance = ard1.ardRead(U);
+
+		if (0 < distance < 10)
+		{
+			startPos = 1;
+		}
+
+		else if (10 < distance < 20)
+		{
+			startPos = 2;
+		}
+
+		else if (distance < 30)
+		{
+			startPos = 3;
+		}
+
+		else if (distance < 40)
+		{
+			startPos = 4;
+		}
+
+		else if (distance < 50)
+		{
+			startPos = 5;
+		}
+
+		else
+		{
+			/*ask ultrasonic sensor scan the distance again*/
+			startPos = ultraRead();
+		}
+	}
 }
