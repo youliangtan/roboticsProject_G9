@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "array_storage.h"
 #include <stdio.h>
 /*#include "dynamixel.h"*/
 #include <conio.h>
@@ -50,40 +51,40 @@ int main()
 	 for(i=0;i<=5;i++)
 	 {
 	   dxl_write_word(i+1,B[0][i],A[0][i]);
-	   
+
 	  } */
 
 
 	/*Rest for 10ms*/
 	/*sleep(10);*/
-	
+
 	/*Move to nth intermediate position and rest*/
 	int n3;
 	printf("how many intermediate position required?");
 	scanf("%d", &n3);
 	/*if the intermediate position exceed 19,ask user to input until less than 19*/
-	
+
         while(n3>19)
 		{
 			prinf("please reenter the number of intermediate required");
 			scanf("%d", &n3);
 		}
-	
-	    
+
+
 		/* Move
 		for (n1 = 1; n1 <= n3; n1++)
 		{
-	
+
 			for(i=0;i<=5;i++)
 			{
-			  dxl_write_word(i+1,B[n1][i],A[n1][i];     
-			     
+			  dxl_write_word(i+1,B[n1][i],A[n1][i];
+
 			}
-			
+
 			sleep(10);
 		}*/
-	
-	/*After the loop is over, matrix B will pointed to B[n3+1][0] and A will pointed to A[n3+1][0]*/	
+
+	/*After the loop is over, matrix B will pointed to B[n3+1][0] and A will pointed to A[n3+1][0]*/
 
 	/*Move to tray position
 
@@ -98,7 +99,7 @@ int main()
 	   Remaining step:18-n3
 
 	/*Move to nth intermediate position and rest*/
-	
+
 		int n4;
 		printf("how many intermediate position required?");
 		scanf("%d", &n4);
@@ -108,8 +109,8 @@ int main()
 			printf("Please reenter again ");
 			scanf("%d", &n4);
 		}
-	     
-		
+
+
 		for (j=n3+2; j <= n3+n4+2; j++)
 	   {
 		/*move*/
@@ -122,13 +123,13 @@ int main()
 	    }
 
 	/*Move to intial position*/
-	
+
 		for (i = 0; i <= 5; i++)
 		{
 			dxl_write_word(i + 1, B[j + 1][i], A[0][i]);
 		}
 
-	
+
 
 
 
