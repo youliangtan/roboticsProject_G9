@@ -1,0 +1,5 @@
+﻿  Main.cpp
+Main.obj : error LNK2019: unresolved external symbol _dxl_initialize@8 referenced in function "void __cdecl init(void)" (?init@@YAXXZ)
+Main.obj : error LNK2019: unresolved external symbol _dxl_write_word@12 referenced in function "void __cdecl init(void)" (?init@@YAXXZ)
+C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import\dynamixel.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\Debug\BreakfastSet.exe : fatal error LNK1120: 2 unresolved externals
