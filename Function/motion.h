@@ -1,5 +1,5 @@
-#ifndef ROBOTICFUNC_H_INCLUDED
-#define ROBOTICFUNC_H_INCLUDED
+#ifndef MOTION_H_INCLUDED
+#define MOTION_H_INCLUDED
 
 #include <string>
 #include <windows.h>
@@ -7,7 +7,7 @@
 
 enum mode {egg, bread, drinks};
 
-int func(mode, int pick_pos, int tray_pos);
+int arm_motion(mode, int pick_pos, int tray_pos);
 
 
 #endif // ROBOTICFUNC_H_INCLUDED
