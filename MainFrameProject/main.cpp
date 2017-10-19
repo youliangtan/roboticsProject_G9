@@ -71,16 +71,12 @@ int main()
 
 
 	/*Read ultrasonic reading of bread*/
-<<<<<<< HEAD
-	int ultraRead()
-	{
-		int distance;
-		distance = ard1.ardRead(U);
-=======
+
+	
 	ultraRead(ArdSensor* ard1)
 	{
 		int distance = ard1->ardRead(U);
->>>>>>> ae60b331337db70f5b00fa5191734172999cab70
+
 
 		if (0 < distance < 10)
 		{
