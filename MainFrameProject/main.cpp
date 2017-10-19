@@ -1,14 +1,14 @@
-#include "stdafx.h"
+#include"stdafx.h"
 #include<stdio.h>
 #include<fstream>
 #include<iostream>
 #include<string>
-#include <iostream>
+#include<iostream>
 
 using namespace std;
 
 #define PORT_NUM 6
-
+string readUI();
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
 char StatusFilePath[] = "../UI_display/static/status.txt";
 
@@ -21,7 +21,7 @@ int writeUI(string status){
 	return 0;
 }
 
-std::string readUI(){
+string readUI(){
 	//read selection from choice.txt
 	//return array address of selection
 	string line;
@@ -38,6 +38,43 @@ std::string readUI(){
 	return 0;
 }
 
+int ultraRead(ArdSensor* ard1)
+{	
+	/*Read ultrasonic reading of bread*/
+	int distance = ard1->ardRead(U);
+	if (0 < distance < 10)
+	{
+		startPos = 1;
+		return startPos;
+	}
+	else if (10 < distance < 20)
+	{
+		startPos = 2;
+		return startPos;
+	}
+	else if (distance < 30)
+	{
+		startPos = 3;
+		return startPos;
+	}
+	else if (distance < 40)
+	{
+		startPos = 4;
+		return startPos;
+	}
+	else if (distance < 50)
+	{
+		startPos = 5;
+		return startPos;
+	}
+	else
+	{
+		/*ask ultrasonic sensor scan the distance again*/
+		startPos = ultraRead(ard1);
+		return startPos;
+	}
+}
+
 int main()
 {
 	/*user input number of bread,number of cup,tea or coffee*/
@@ -50,8 +87,6 @@ int main()
 	int numEgg = atoi(choice[4].c_str());
 
 
-
-
     /*Initialize Arduino*/
     ArdSensor* ard1(PORT_NUM);
 
@@ -59,7 +94,7 @@ int main()
 	/*for bread*/
 	for (i = 1; i < numBread; i++)
 	{
-		startPos = ultraRead();
+		startPos = ultraRead(ard1);
 		writeUI("Bread");
 		funcm("Bread", startPos, NULL);
 
@@ -77,51 +112,6 @@ int main()
 	writeUI("Drink");
 	arm_motion("Drink", NULL, NULL);
 
-
-
-	/*Read ultrasonic reading of bread*/
-
-
-	ultraRead(ArdSensor* ard1)
-	{
-		int distance = ard1->ardRead(U);
-
-
-		if (0 < distance < 10)
-		{
-			startPos = 1;
-			return startPos;
-		}
-
-		else if (10 < distance < 20)
-		{
-			startPos = 2;
-			return startPos;
-		}
-
-		else if (distance < 30)
-		{
-			startPos = 3;
-			return startPos;
-		}
-
-		else if (distance < 40)
-		{
-			startPos = 4;
-			return startPos;
-		}
-
-		else if (distance < 50)
-		{
-			startPos = 5;
-			return startPos;
-		}
-
-		else
-		{
-			/*ask ultrasonic sensor scan the distance again*/
-			startPos = ultraRead(ard1);
-			return startPos;
-		}
-	}
+	//finish and ready to serve!!
+	writeUI("finish");
 }
