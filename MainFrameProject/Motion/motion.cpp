@@ -35,9 +35,11 @@ int arm_motion(mode Mode,int pick_pos, int tray_pos)
     //Iterator
     for(auto it = vect.begin(); it != vect.end(); it++)
     {
-        for(auto it2 = it->begin(); it2 != it2->end(); it2++)
-        {
-            static counter = 1;
+        for(auto it2 = it->begin(); (it2 + 1) != it->end(); it2++)
+            static int counter = 1;
+            int time = it->end();
+
+            dxl_write_word(counter,/*VELOCITY*/, *it2);
             dxl_write_word(counter, /*MOVE*/, *it2);
         }
         while(/* TODO: waiting to reach final position*/)
