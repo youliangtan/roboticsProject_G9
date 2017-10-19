@@ -7,8 +7,10 @@
 
 using namespace std;
 
+#define PORT_NUM 6
+
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
-char StatusFilePath[] = "../UI_display/static/status.txt"; 
+char StatusFilePath[] = "../UI_display/static/status.txt";
 
 int writeUI(string status){
 	//write status command to status.txt
@@ -32,8 +34,8 @@ std::string readUI(){
 	  }
 	  myfile.close();
 	}
-	else cout << "Unable to open file";   
-	return line;
+	else cout << "Unable to open file";
+	return 0;
 }
 
 int main()
@@ -46,6 +48,8 @@ int main()
 
 
 
+    /*Initialize Arduino*/
+    ArdSensor* ard1(PORT_NUM);
 
 
 	/*for bread*/
@@ -61,50 +65,59 @@ int main()
 	for (i = 1; i < numEgg; i++)
 	{
 		writeUI("Egg");
-		funcm("Egg", NULL, i + 1);
+		arm_motion("Egg", NULL, i + 1);
 
 	}
 
 	/*for drinks*/
 	writeUI("Drink");
-	funcm("Drink", NULL, NULL);
+	arm_motion("Drink", NULL, NULL);
 
 
 
 	/*Read ultrasonic reading of bread*/
-	ultraRead()
+
+	
+	ultraRead(ArdSensor* ard1)
 	{
-		distance = ard1.ardRead(U);
+		int distance = ard1->ardRead(U);
+
 
 		if (0 < distance < 10)
 		{
 			startPos = 1;
+			return startPos;
 		}
 
 		else if (10 < distance < 20)
 		{
 			startPos = 2;
+			return startPos;
 		}
 
 		else if (distance < 30)
 		{
 			startPos = 3;
+			return startPos;
 		}
 
 		else if (distance < 40)
 		{
 			startPos = 4;
+			return startPos;
 		}
 
 		else if (distance < 50)
 		{
 			startPos = 5;
+			return startPos;
 		}
 
 		else
 		{
 			/*ask ultrasonic sensor scan the distance again*/
 			startPos = ultraRead();
+			return startPos;
 		}
 	}
 }
