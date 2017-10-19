@@ -1,8 +1,8 @@
-#include "roboticfunc.h"
+#include "motion.h"
 
 using namespace std;
 
-int func(mode Mode,int pick_pos, int tray_pos)
+int arm_motion(mode Mode,int pick_pos, int tray_pos)
 {
     int pos;
     string pick_filename,tray_filename;
@@ -25,11 +25,11 @@ int func(mode Mode,int pick_pos, int tray_pos)
             static counter = 1;
             dxl_write_word(counter, /*MOVE*/, *it2);
         }
-        Sleep(100);
+        while(/* TODO: waiting to reach final position*/)
     }
 
     //2nd cycle: intermediate position -> tray position -> initial position
-    read(filename.c_str(), vect); //Load vector
+    read(tray_filename.c_str(), vect); //Load vector
     //Iterator
     for(auto it = vect.begin(); it != vect.end(); it++)
     {
@@ -38,11 +38,8 @@ int func(mode Mode,int pick_pos, int tray_pos)
             static counter = 1;
             dxl_write_word(counter, /*MOVE*/, *it2);
         }
-        Sleep(100);
+        while(/* TODO: waiting to reach final position*/)
     }
-
-
-    /*write_to_UI();*/
 
     return 0;
 }
