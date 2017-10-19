@@ -7,7 +7,7 @@
 
 enum mode {egg, bread, drinks};
 
-int func(mode, int number);
+int func(mode, int pick_pos, int tray_pos);
 
 
 #endif // ROBOTICFUNC_H_INCLUDED
