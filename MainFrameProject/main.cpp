@@ -3,21 +3,23 @@
 #include<fstream>
 #include<iostream>
 #include<string>
+#include <iostream>
 
-namespace std;
+using namespace std;
+
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
 char StatusFilePath[] = "../UI_display/static/status.txt"; 
 
-int writeUI(char str[]){
+int writeUI(string status){
 	//write status command to status.txt
 	ofstream myfile;
 	myfile.open (StatusFilePath);
-	myfile << "Writing this to a file.\n";
+	myfile << status;
 	myfile.close();
 	return 0;
 }
 
-int readUI(){
+std::string readUI(){
 	//read selection from choice.txt
 	//return array address of selection
 	string line;
@@ -26,19 +28,19 @@ int readUI(){
 	{
 	  while ( getline (myfile,line) )
 	  {
-		cout << line << '\n';
+		cout << choice << '\n';
 	  }
 	  myfile.close();
 	}
 	else cout << "Unable to open file";   
-	return 0;
+	return line;
 }
 
 int main()
 {
 	/*user input number of bread,number of cup,tea or coffee*/
 	/*Read a txt file */
-	readUI()
+	string choice = readUI()
 
 
 

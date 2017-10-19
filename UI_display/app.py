@@ -71,8 +71,9 @@ def send():
 
     printout = "{}, {} Toast, {} Egg".format(drink, toastNum, eggNum)
     print(printout)
+    textinput = "{},{},{}".format(drink[0], toastNum, eggNum)
     with open("./static/output.txt", 'w') as outfile:
-        outfile.write(printout)
+        outfile.write(textinput)
     # if request.method =='POST':
     # render_template('display.html')
     return jsonify(result=printout)
