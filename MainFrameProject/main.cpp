@@ -42,8 +42,12 @@ int main()
 {
 	/*user input number of bread,number of cup,tea or coffee*/
 	/*Read a txt file */
-	string choice = readUI()
+	string choice = readUI();
 
+	//choice is in "c,1,0" or "t,2,2" format
+	char drink = choice[0];
+	int numBread = atoi(choice[2].c_str());
+	int numEgg = atoi(choice[4].c_str());
 
 
 
