@@ -4,9 +4,11 @@
 #include<iostream>
 #include<string>
 
+#define PORT_NUM 6
+
 namespace std;
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
-char StatusFilePath[] = "../UI_display/static/status.txt"; 
+char StatusFilePath[] = "../UI_display/static/status.txt";
 
 int writeUI(char str[]){
 	//write status command to status.txt
@@ -30,7 +32,7 @@ int readUI(){
 	  }
 	  myfile.close();
 	}
-	else cout << "Unable to open file";   
+	else cout << "Unable to open file";
 	return 0;
 }
 
@@ -38,12 +40,11 @@ int main()
 {
 	/*user input number of bread,number of cup,tea or coffee*/
 	/*Read a txt file */
-	readUI()
+	readUI();
 
 
-
-
-
+    /*Initialize Arduino*/
+    ArdSensor* ard1(PORT_NUM);
 
 
 	/*for bread*/
@@ -70,9 +71,9 @@ int main()
 
 
 	/*Read ultrasonic reading of bread*/
-	ultraRead()
+	ultraRead(ArdSensor* ard1)
 	{
-		distance = ard1.ardRead(U);
+		int distance = ard1->ardRead(U);
 
 		if (0 < distance < 10)
 		{
