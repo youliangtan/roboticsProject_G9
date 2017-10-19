@@ -1,0 +1,7 @@
+﻿  Main.cpp
+c:\users\yuuzaab\desktop\robotics project\vs_ws\layoutplanningapp\layoutplanningapp\main.cpp(240): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\yuuzaab\desktop\robotics project\vs_ws\layoutplanningapp\layoutplanningapp\main.cpp(241): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\yuuzaab\desktop\robotics project\vs_ws\layoutplanningapp\layoutplanningapp\main.cpp(242): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+c:\users\yuuzaab\desktop\robotics project\vs_ws\layoutplanningapp\layoutplanningapp\main.cpp(243): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  LayoutPlanningApp.vcxproj -> C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\LayoutPlanningApp\x64\Debug\LayoutPlanningApp.exe
+  LayoutPlanningApp.vcxproj -> C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\LayoutPlanningApp\x64\Debug\LayoutPlanningApp.pdb (Partial PDB)
