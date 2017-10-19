@@ -96,7 +96,7 @@ int main()
 	{
 		startPos = ultraRead(ard1);
 		writeUI("Bread");
-		funcm("Bread", startPos, NULL);
+		arm_motion(Bread, startPos, NULL);
 
 	}
 
@@ -104,13 +104,13 @@ int main()
 	for (i = 1; i < numEgg; i++)
 	{
 		writeUI("Egg");
-		arm_motion("Egg", NULL, i + 1);
+		arm_motion(Egg, NULL, i + 1);
 
 	}
 
 	/*for drinks*/
 	writeUI("Drink");
-	arm_motion("Drink", NULL, NULL);
+	arm_motion(Drink, NULL, NULL);
 
 	//finish and ready to serve!!
 	writeUI("finish");
