@@ -2,20 +2,44 @@
 #include<stdio.h>
 #include<fstream>
 #include<iostream>
+#include<string>
 
 namespace std;
+char ChoiceFilePath[] = "../UI_display/static/choice.txt";
+char StatusFilePath[] = "../UI_display/static/status.txt"; 
+
+int writeUI(char str[]){
+	//write status command to status.txt
+	ofstream myfile;
+	myfile.open (StatusFilePath);
+	myfile << "Writing this to a file.\n";
+	myfile.close();
+	return 0;
+}
+
+int readUI(){
+	//read selection from choice.txt
+	//return array address of selection
+	string line;
+	ifstream myfile (ChoiceFilePath);
+	if (myfile.is_open())
+	{
+	  while ( getline (myfile,line) )
+	  {
+		cout << line << '\n';
+	  }
+	  myfile.close();
+	}
+	else cout << "Unable to open file";   
+	return 0;
+}
 
 int main()
 {
 	/*user input number of bread,number of cup,tea or coffee*/
 	/*Read a txt file */
+	readUI()
 
-	ifstream fp;
-	fp.open("Choice.txt");
-
-	if{
-
-	}
 
 
 
