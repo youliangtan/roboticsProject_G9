@@ -28,6 +28,8 @@ int arm_motion(mode Mode,int pick_pos, int tray_pos)
         while(/* TODO: waiting to reach final position*/)
     }
 
+    Sleep(1000);
+
     //2nd cycle: intermediate position -> tray position -> initial position
     read(tray_filename.c_str(), vect); //Load vector
     //Iterator
