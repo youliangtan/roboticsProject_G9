@@ -72,7 +72,7 @@ int main()
 
 	/*Read ultrasonic reading of bread*/
 
-	
+
 	ultraRead(ArdSensor* ard1)
 	{
 		int distance = ard1->ardRead(U);
@@ -111,7 +111,7 @@ int main()
 		else
 		{
 			/*ask ultrasonic sensor scan the distance again*/
-			startPos = ultraRead();
+			startPos = ultraRead(ard1);
 			return startPos;
 		}
 	}
