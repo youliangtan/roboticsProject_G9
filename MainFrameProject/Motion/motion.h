@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
+#include <sstream>
 #include "array_storage.h"
 #include "dynamixel.h"
 
@@ -32,6 +33,9 @@
 enum mode {egg, bread, drinks};
 
 int arm_motion(mode, int pick_pos, int tray_pos);
-
+void init();
+void unlock_joints();
+void lock_joints();
+bool is_moving();
 
 #endif // ROBOTICFUNC_H_INCLUDED

@@ -11,7 +11,7 @@
 
 using namespace std;
 template <typename T>
-int store(char* filename, vector< vector<T> > vect)
+int store(const char* filename, vector< vector<T> > vect)
 {
     ofstream file;
     file.open(filename);
@@ -35,7 +35,7 @@ int store(char* filename, vector< vector<T> > vect)
 }
 
 template <typename T>
-int read(char* filename, vector< vector<T> > &vect)
+int read(const char* filename, vector< vector<T> > &vect)
 {
     vect.clear();
     string cell, line;

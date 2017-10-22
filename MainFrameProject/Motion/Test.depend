@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1508664852 source:c:\users\user\documents\github\motion\main.cpp
+	"motion.h"
+
+1508666991 c:\users\user\documents\github\motion\motion.h
+	<string>
+	<windows.h>
+	<stdio.h>
+	<conio.h>
+	<math.h>
+	<sstream>
+	"array_storage.h"
+
+1508663848 c:\users\user\documents\github\motion\array_storage.h
+	<stdio.h>
+	<sstream>
+	<fstream>
+	<string>
+	<vector>
+	<string>
+	<iostream>
+
+1508667018 source:c:\users\user\documents\github\motion\motion.cpp
+	"motion.h"
+
+1508664852 source:c:\users\user\documents\github\roboticsproject_g9\mainframeproject\motion\main.cpp
+	"motion.h"
+
+1508666991 c:\users\user\documents\github\roboticsproject_g9\mainframeproject\motion\motion.h
+	<string>
+	<windows.h>
+	<stdio.h>
+	<conio.h>
+	<math.h>
+	<sstream>
+	"array_storage.h"
+
+1508668149 c:\users\user\documents\github\roboticsproject_g9\mainframeproject\motion\array_storage.h
+	<stdio.h>
+	<sstream>
+	<fstream>
+	<string>
+	<vector>
+	<string>
+	<iostream>
+
