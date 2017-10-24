@@ -1,0 +1,6 @@
+﻿  motion.cpp
+c:\users\user\documents\visual studio 2017\projects\motion\consoleapplication4\motion.cpp(67): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\documents\visual studio 2017\projects\motion\consoleapplication4\motion.cpp(68): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\user\documents\visual studio 2017\projects\motion\consoleapplication4\motion.cpp(95): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\documents\visual studio 2017\projects\motion\consoleapplication4\motion.cpp(96): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  ConsoleApplication4.vcxproj -> C:\Users\User\Documents\Visual Studio 2017\Projects\Motion\x64\Debug\ConsoleApplication4.exe

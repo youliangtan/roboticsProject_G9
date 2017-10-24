@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1508251675 source:c:\users\user\documents\github\file\array_storage.cpp
+	"array_storage.h"
+
+1508257328 c:\users\user\documents\github\file\array_storage.h
+	<stdio.h>
+	<sstream>
+	<fstream>
+	<string>
+	<vector>
+	<string>
+	<iostream>
+
+1508256966 source:c:\users\user\documents\github\file\main.cpp
+	"array_storage.h"
+	<iostream>
+
+1508663828 source:c:\users\user\documents\github\roboticsproject_g9\mainframeproject\array_to_csv\main.cpp
+	"array_storage.h"
+	<iostream>
+
+1508257328 c:\users\user\documents\github\roboticsproject_g9\mainframeproject\array_to_csv\array_storage.h
+	<stdio.h>
+	<sstream>
+	<fstream>
+	<string>
+	<vector>
+	<string>
+	<iostream>
+

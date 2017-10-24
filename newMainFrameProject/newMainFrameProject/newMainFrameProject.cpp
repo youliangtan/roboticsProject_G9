@@ -125,92 +125,96 @@ int ultraRead(int position, int N, int numbread)
 
 
 
-int main(){
+int main() {
 	//read selection from choice.txt
 	//return array address of selection
-	int N=0;
+	int N = 0;
 	int Position;
-	
+	int quit=3;
+
 	//read selection from choice.txt
 	//return array address of selection
-	
-	ifstream myfile(ChoiceFilePath);
-	if (myfile.is_open())
+	while (quit != 0)
 	{
-		myfile >> choice.drink >> choice.a >> choice.numbread >> choice.b >> choice.numegg;
+		ifstream myfile(ChoiceFilePath);
+		if (myfile.is_open())
+		{
+			myfile >> choice.drink >> choice.a >> choice.numbread >> choice.b >> choice.numegg;
 
 
 
-		myfile.close();
-	}
-	else
-	{
-		cout << "Unable to open file";
+			myfile.close();
+		}
+		else
+		{
+			cout << "Unable to open file";
 
-	}
-	
-	char Drink = choice.drink;
-	if (Drink == 'c')
-	{
-		printf("coffee ordered by user\n");
-	}
-	else
-	{
-		printf("tea ordered by user\n");
-	}
-	int numBread = choice.numbread;
-	printf("%d bread ordered by user\n", numBread);
-	int numEgg = choice.numegg;
-	printf("%d egg ordered by user\n", numEgg);
-	
-	
-	
-	//ArdSensor ard1(PORT_NUM);
+		}
 
-	//cumalative value of bread
-	N += numBread;
+		char Drink = choice.drink;
+		if (Drink == 'c')
+		{
+			printf("coffee ordered by user\n");
+		}
+		else
+		{
+			printf("tea ordered by user\n");
+		}
+		int numBread = choice.numbread;
+		printf("%d bread ordered by user\n", numBread);
+		int numEgg = choice.numegg;
+		printf("%d egg ordered by user\n", numEgg);
 
 
 
-	/*for bread*/
-	int i;
-	int startPos;
-	
-	for (i = 1; i <= numBread; i++)
-	{
-		printf("Input a manual position.\n");
-		scanf_s("%d", &Position);
-		startPos = ultraRead(Position, N, numBread);
-		printf("Performing number %d motion of bread.\n", i);
-		writeUI("Bread"); 
-		Sleep(10000);
-		//arm_motion(Bread, startPos, NULL);
-		printf("number %d motion of bread is done.\n", i);
+		//ArdSensor ard1(PORT_NUM);
 
-	}
+		//cumalative value of bread
+		N += numBread;
 
-	/*for egg*/
-	for (i = 1; i <= numEgg; i++)
-	{
-		writeUI("Egg");
+
+
+		/*for bread*/
+		int i;
+		int startPos;
+
+		for (i = 1; i <= numBread; i++)
+		{
+			printf("Input a manual position.\n");
+			scanf_s("%d", &Position);
+			startPos = ultraRead(Position, N, numBread);
+			printf("Performing number %d motion of bread.\n", i);
+			writeUI("Bread");
+			Sleep(5000);
+			//arm_motion(Bread, startPos, NULL);
+			printf("number %d motion of bread is done.\n", i);
+
+		}
+
+		/*for egg*/
+		for (i = 1; i <= numEgg; i++)
+		{
+			writeUI("Egg");
+
+			printf("Performing number %d motion of egg.\n", i);
+			Sleep(5000);
+
+			//arm_motion(Egg, NULL, i + 1);
+			printf("%dst motion of egg is performed.\n", i);
+
+		}
+
+		/*for drinks*/
+		writeUI("Drink");
+		//arm_motion(Drink, NULL, NULL);
+		Sleep(5000);
+
+		//finish and ready to serve!!
+		writeUI("finish");
+		printf("finish.\n");
+		printf("input 0 to quit or else press other value.\n");
+		scanf_s("%d", &quit);
 		
-		printf("Performing number %d motion of egg.\n",i);
-		Sleep(10000);
-		
-		//arm_motion(Egg, NULL, i + 1);
-		printf("%dst motion of egg is performed.\n", i);
-
 	}
-
-	/*for drinks*/
-	writeUI("Drink");
-	//arm_motion(Drink, NULL, NULL);
-	Sleep(10000);
-
-	//finish and ready to serve!!
-	writeUI("finish"); 
-	printf("finish.\n");
-
 	return 0;
 }
-
