@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <string>
 
+
 class ArdSensor
 {
     public:

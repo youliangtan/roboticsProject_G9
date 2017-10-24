@@ -78,8 +78,8 @@
     <LibraryPath>C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\User\Desktop\BreakfastSet\DynamixelSDK\import;C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\User\Desktop\BreakfastSet\DynamixelSDK\import;C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\Debug\DynamixelSDK\import;C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\Debug\DynamixelSDK\import;C:\Users\User\Desktop\BreakfastSet\DynamixelSDK\import;C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Users\YuuZaaB\Desktop\Robotics Project\VS_WS\BreakfastSet\DynamixelSDK\import;$(IncludePath)</IncludePath>

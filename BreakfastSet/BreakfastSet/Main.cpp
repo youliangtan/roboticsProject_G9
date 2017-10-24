@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <math.h>
-/*#include "dynamixel.h"*/
+#include "dynamixel.h"
 
 #pragma comment(lib, "dynamixel.lib")
 
