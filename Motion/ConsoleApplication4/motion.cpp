@@ -44,7 +44,7 @@ int arm_motion(mode Mode, int pick_pos, int tray_pos)
 	vector< vector<int> > vect;
 	switch (Mode)
 	{
-	case bread: pick_filename << "bread_pick" << pick_pos << ".csv"; tray_filename << "bread_tray" << tray_pos << ".csv"; break;
+	case bread: pick_filename << "bread_pick" << pick_pos << ".csv"; tray_filename << "bread_tray.csv"; break;
 	case egg: pick_filename << "egg_pick.csv"; tray_filename << "egg_tray" << tray_pos << ".csv"; break;
 	case drinks: pick_filename << "drinks.csv"; break;
 	}
