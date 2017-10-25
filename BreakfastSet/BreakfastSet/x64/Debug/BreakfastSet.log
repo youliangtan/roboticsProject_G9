@@ -1,2 +1,2 @@
-﻿  Main.cpp
-c:\users\user\desktop\breakfastset\breakfastset\main.cpp(5): fatal error C1083: Cannot open include file: 'dynamixel.h': No such file or directory
+﻿  BreakfastSet.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\x64\Debug\BreakfastSet.exe
+  BreakfastSet.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\x64\Debug\BreakfastSet.pdb (Partial PDB)

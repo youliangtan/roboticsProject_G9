@@ -3,6 +3,8 @@
 
 int main()
 {
+    char* filename = "test.csv";
+    /*
     int row = 0, column = 0, counter = 0;
     printf("Enter rows: ");
     scanf("%d", &row);
@@ -15,9 +17,8 @@ int main()
             vect[i][j] = counter;
             counter++;
         }
-    char* filename = "test.csv";
     if(store(filename, vect) == -1)printf("Failed");
-
+    */
     vector< vector<int> > vect2;
     read(filename, vect2);
 
