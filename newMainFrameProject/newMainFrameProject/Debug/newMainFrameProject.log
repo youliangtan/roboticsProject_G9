@@ -1,3 +1,5 @@
 ﻿  newMainFrameProject.cpp
-  newMainFrameProject.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\newMainFrameProject\Debug\newMainFrameProject.exe
-  newMainFrameProject.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\newMainFrameProject\Debug\newMainFrameProject.pdb (Partial PDB)
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.h(9): fatal error C1083: Cannot open include file: 'dynamixel.h': No such file or directory
+  motion.cpp
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.h(9): fatal error C1083: Cannot open include file: 'dynamixel.h': No such file or directory
+  Generating Code...

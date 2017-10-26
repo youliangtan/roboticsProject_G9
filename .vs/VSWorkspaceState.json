@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\LayoutPlanningApp",
+    "\\Motion",
+    "\\Motion\\ConsoleApplication4",
     "\\newMainFrameProject"
   ],
-  "SelectedNode": "\\newMainFrameProject\\newMainFrameProject.sln",
+  "SelectedNode": "\\Motion\\ConsoleApplication4\\motion.cpp",
   "PreviewInSolutionExplorer": false
 }
