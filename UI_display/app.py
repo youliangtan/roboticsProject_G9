@@ -1,5 +1,6 @@
 # app = Flask(__name__)
 from flask import Flask, render_template, request, jsonify, send_from_directory
+import time
 
 app = Flask(__name__, static_url_path='')
 
@@ -59,7 +60,13 @@ def home():
     print("Reminder: Run it in the right working Dir as python code")
     return render_template('index.html')
 
-#hihi
+@app.route('/smile', methods  = ['GET', 'POST'])
+def smile():
+    with open("./static/smile.txt", 'w') as outfile:
+        #create empty string 
+        outfile.write('smiled')      
+    return render_template('display.html')
+
 @app.route('/display', methods  = ['GET', 'POST'])
 def display():
     return render_template('display.html')
@@ -75,6 +82,8 @@ def send():
     textinput = "{},{},{}.".format(drink[0], toastNum, eggNum)
     with open("./static/choice.txt", 'w') as outfile:
         outfile.write(textinput)
+    with open("./static/smile.txt", 'w') as outfile:
+        outfile.write("pending")
     # if request.method =='POST':
     # render_template('display.html')
     return jsonify(result=printout)
