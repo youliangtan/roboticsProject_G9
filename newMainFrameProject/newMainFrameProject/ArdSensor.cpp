@@ -15,20 +15,30 @@ using namespace std;
 ArdSensor::ArdSensor(int portNum)
 {
     stringstream ss;
-    string port = "\\\\.\\COM";
+    string port = "COM";
     ss << portNum;
-    port += ss.str();
+	port += ss.str();
 
-    hComm = CreateFile((LPCWSTR)port.c_str(),          // for COM1—COM9 only
+    hComm = CreateFile(port.c_str(),          // for COM1—COM9 only
                        GENERIC_READ | GENERIC_WRITE, //Read/Write
                        0,               // No Sharing
                        NULL,            // No Security
                        OPEN_EXISTING,   // Open existing port only
                        0,               // Non Overlapped I/O
                        NULL);
-    if (hComm == INVALID_HANDLE_VALUE)printf("Error in opening serial port.\n");
-    else printf("Opening serial port successful.\n");
+	if (hComm == INVALID_HANDLE_VALUE)
+	{
+		printf("Error in opening serial port.\n");
+		EXIST = false;
+	}
+    else 
+	{
+		printf("Opening serial port successful.\n");
+		EXIST = true;
+	}
 
+	if(EXIST)
+	{
     DCB dcbSerialParams = { 0 };
     dcbSerialParams.DCBlength = sizeof(dcbSerialParams);
     GetCommState(hComm, &dcbSerialParams);
@@ -47,6 +57,12 @@ ArdSensor::ArdSensor(int portNum)
     timeouts.WriteTotalTimeoutMultiplier = 10; // in milliseconds
     SetCommTimeouts(hComm, &timeouts);
     Sleep(1000);
+	}
+}
+
+bool ArdSensor::exist()
+{
+	return EXIST;
 }
 
 int ArdSensor::ardRead(const char* command)

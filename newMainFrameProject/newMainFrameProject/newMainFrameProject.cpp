@@ -18,8 +18,6 @@
 #pragma comment(lib, "dynamixel.lib")
 using namespace std;
 
-#define PORT_NUM 1
-
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
 char StatusFilePath[] = "../UI_display/static/status.txt";
 
@@ -58,23 +56,23 @@ int ultraRead( ArdSensor* ard1, int N, int numbread)
 	
 		int distance = ard1->ardRead("U");
 		
-		if (distance>0 && distance< 13)
+		if (distance > 4 && distance <= 14)
 		{
 			startPos = 1;
 			return startPos;
 		}
-		else if ( distance < 18)
+		else if (distance > 4 && distance <= 19)
 		{
 			startPos = 2;
 			return startPos;
 		}
-		else if(distance <24)
+		else if(distance > 4 &&  distance <= 25)
 		{
 			startPos = 3;
 			return startPos;
 		}
 
-		else 
+		else
 		{
 			startPos = 4;
 			return startPos;
@@ -132,6 +130,16 @@ int ultraRead( ArdSensor* ard1, int N, int numbread)
 
 }
 
+void clear_struct()
+{
+	choice.drink = NULL;
+	choice.a = NULL;
+	choice.b = NULL;
+	choice.numbread = NULL;
+	choice.d = NULL;
+	choice.numegg = NULL;
+}
+
 
 
 int main() {
@@ -140,13 +148,24 @@ int main() {
 	int N = 0;
 	int Position;
 	int quit = 3;
+	int dyna_port = 9;
+	int ard_port = 3;
 	
 	
-	
-	printf("hi.\n");
+	printf("Arduino Port:");
+	scanf_s("%d", &ard_port);
+	printf("Dynamixel Port:");
+	scanf_s("%d", &dyna_port);
 	//read selection from choice.txt
 	//return array address of selection
-	while (quit != 0)
+	ArdSensor ard1(ard_port);
+	if (!ard1.exist())
+	{
+		printf("Exiting.\n");
+		exit(0);
+	}
+	init(dyna_port);
+	while (true)
 	{
 		ifstream myfile(ChoiceFilePath);
 		if (myfile.is_open())
@@ -158,6 +177,7 @@ int main() {
 			if (choice.d == NULL)
 			{
 				//wait until user input the string and UI send the string to txt file
+				writeUI("");
 				printf("file is not ready.\n");
 				Sleep(1000);
 			}
@@ -182,10 +202,6 @@ int main() {
 				int numEgg = choice.numegg;
 				printf("%d egg ordered by user\n", numEgg);
 
-
-
-				ArdSensor ard1(PORT_NUM);
-
 				//cumalative value of bread
 				N += numBread;
 
@@ -197,12 +213,33 @@ int main() {
 
 				for (i = 1; i <= numBread; i++)
 				{
-					
+					while (true)
+					{
+						static int counter = 0;
+						int value = ard1.ardRead("U");
+						std::cout << value << std::endl;
+						if (value <= 200 && value >= 5)
+						{
+							counter++;
+							std::cout << "Test counter:" << counter << std::endl;
+						}
+						else
+						{
+							counter = 0;
+							std::cout << "Reset" << std::endl;
+						}
+						if (counter > 2) 
+						{
+							counter = 0;
+							break;
+						}
+					}
 					startPos = ultraRead(&ard1, N, numBread);
 					printf("Performing number %d motion of bread.\n", i);
 					writeUI("toast");
 					
-					arm_motion(bread, startPos, 0);
+					arm_motion(bread_pick, startPos);
+					arm_motion(bread_tray, 0);
 					printf("number %d motion of bread is done.\n", i);
 
 				}
@@ -213,23 +250,26 @@ int main() {
 					writeUI("eggs");
 
 					printf("Performing number %d motion of egg.\n", i);
-					Sleep(5000);
-
-					arm_motion(egg, 0, i + 1);
+					arm_motion(egg_pick, 0);
+					arm_motion(egg_tray, i);
 					printf("%dst motion of egg is performed.\n", i);
 
 				}
 
 				/*for drinks*/
 				writeUI("drinks");
-				arm_motion(drinks, 0, 0);
-				Sleep(5000);
+				arm_motion(drinks_pick, 0);
+				/*Arduino water dispenser
+				ard1.ardRead("D");
+				*/
+				arm_motion(drinks_tray, 0);
 
 				//finish and ready to serve!!
 				writeUI("finish");
 				printf("finish.\n");
-				printf("input 0 to quit or else press other value.\n");
-				scanf_s("%d", &quit);
+				clear_struct();
+				myfile.close();
+				Sleep(10000);
 
 			}
 			

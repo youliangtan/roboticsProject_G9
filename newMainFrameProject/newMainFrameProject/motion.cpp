@@ -4,8 +4,8 @@
 
 int previous[6] = {0};
 using namespace std;
-void init() {
-	if (dxl_initialize(PORTNUM, BAUDNUM) == 0) {
+void init(int port_number) {
+	if (dxl_initialize(port_number, BAUDNUM) == 0) {
 		printf("Failed to connect to Robotic Arm...\n\n");
 		printf("Press 'Esc' to terminate or any other key to retry...\n");
 		if (_getch() == 0x1b) {
@@ -13,7 +13,7 @@ void init() {
 			exit(0);
 		}
 		else
-			init();
+			init(port_number);
 	}
 		else {
 		lock_joints();
@@ -38,20 +38,23 @@ void init() {
 	}
 }
 
-int arm_motion(mode Mode, int pick_pos, int tray_pos)
+int arm_motion(mode Mode, int pos)
 {
-	stringstream pick_filename, tray_filename;
+	stringstream filename;
 	vector< vector<int> > vect;
 	switch (Mode)
 	{
-	case bread: pick_filename << "bread_pick" << pick_pos << ".csv"; tray_filename << "bread_tray.csv"; break;
-	case egg: pick_filename << "egg_pick.csv"; tray_filename << "egg_tray" << tray_pos << ".csv"; break;
-	case drinks: pick_filename << "drinks.csv"; break;
+	case bread_pick: filename << "bread_pick" << pos << ".csv"; break;
+	case bread_tray: filename << "bread_tray.csv"; break;
+	case egg_pick: filename << "egg_pick.csv"; break;
+	case egg_tray: filename << "egg_tray" << pos << ".csv"; break;
+	case drinks_pick: filename << "drinks_pick.csv"; break;
+	case drinks_tray: filename << "drinks_tray.csv"; break;
 	}
 
-	printf("%s\n", pick_filename.str().c_str());
-	//1st cycle: Initial position -> pickup -> intermediate position
-	if (!read(pick_filename.str().c_str(), vect))exit(0); //Load vector
+	printf("%s\n", filename.str().c_str());
+
+	if (!read(filename.str().c_str(), vect))exit(0); //Load vector
 														  //Iterator
 	for (auto it = vect.begin(); it != vect.end(); it++) //Loop through all time-step
 	{
@@ -59,9 +62,6 @@ int arm_motion(mode Mode, int pick_pos, int tray_pos)
 		{
 			int time_millis = (*it)[NO_OF_MOTORS]; //Time is stored in the column after the last motor
 			float theta = fabs((*it)[counter] - dxl_read_word(counter + 1, CUR_POS))*(300.0 / 1023.0);
-			/*
-			float theta = fabs((*it)[counter] - previous[counter])*(300.0 / 1023.0);
-			*/
 			int rpm = (theta / (time_millis / 1000.0))*(60.0 / 360.0)*(1023.0 / 114.0);
 			if (rpm == 0)rpm = 1;
 
@@ -70,42 +70,6 @@ int arm_motion(mode Mode, int pick_pos, int tray_pos)
 
 			printf("%d	%d	%d\n", counter + 1, MOV_VEL, rpm);
 			printf("%d	%d	%d\n", counter + 1, END_POS, (*it)[counter]);
-			/*
-			previous[counter] = (*it)[counter];
-			*/
-		}
-		Sleep((*it)[NO_OF_MOTORS]);
-		while (is_moving());
-	}
-
-	if (Mode == drinks)exit(0);
-	printf("%s\n", tray_filename.str().c_str());
-
-	//2nd cycle: intermediate position -> tray position -> initial position
-	if (!read(tray_filename.str().c_str(), vect))exit(0); //Load vector
-														  //Iterator
-	for (auto it = vect.begin(); it != vect.end(); it++)
-	{
-		for (int counter = 0; counter < NO_OF_MOTORS; counter++)
-		{
-			int time_millis = (*it)[NO_OF_MOTORS]; //Time is stored in the column after the last motor
-		
-			float theta = fabs((*it)[counter] - dxl_read_word(counter + 1, CUR_POS))*(300.0 / 1023.0);
-			/*
-			float theta = fabs((*it)[counter] - previous[counter])*(300.0 / 1023.0);
-			*/
-			int rpm = (theta / (time_millis / 1000.0))*(60.0 / 360.0)*(1023.0 / 114.0);
-			if (rpm == 0)rpm = 1;
-			else if (rpm >= 1023)rpm = 1023;
-			
-			dxl_write_word(counter + 1, MOV_VEL, rpm);
-			dxl_write_word(counter + 1, END_POS, (*it)[counter]);
-			printf("%d	%d	%d\n", counter + 1, MOV_VEL, rpm);
-			printf("%d	%d	%d\n", counter + 1, END_POS, (*it)[counter]);
-			/*
-			previous[counter] = (*it)[counter];
-			*/
-
 		}
 		Sleep((*it)[NO_OF_MOTORS]);
 		while (is_moving());

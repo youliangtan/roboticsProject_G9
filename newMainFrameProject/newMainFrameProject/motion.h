@@ -16,7 +16,6 @@
 #define CUR_POS			36
 #define MOVING			46
 
-#define PORTNUM			3
 #define BAUDNUM			1
 
 #define JOINT_1			1
@@ -28,10 +27,10 @@
 
 #define MAX_VEL			90	//To set the max angular velocity
 
-enum mode { egg, bread, drinks };
+enum mode { egg_pick, egg_tray, bread_pick, bread_tray, drinks_pick, drinks_tray };
 
-int arm_motion(mode, int pick_pos, int tray_pos);
-void init();
+int arm_motion(mode, int pos);
+void init(int port_number);
 void unlock_joints();
 void lock_joints();
 bool is_moving();
