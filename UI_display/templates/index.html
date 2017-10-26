@@ -62,19 +62,21 @@
 </head>
 
 <body>
+  <h1><br></h1>
   <!-- <h2>The Breakfast Preparation Robot</h2> -->
   <img src="{{ url_for('static', filename = './main.png') }}" id="image" hspace="80" style="width:800px;height:350px;">
-  <br>
+  <br >
+  <img id='smile' src="{{ url_for('static', filename = './smile.png') }}" id="image" hspace="80" style="width:350px;height:350px;">
   <div class='selection'>
-    <p id="drink">TEA</p>
-    <p id="toastNum">0 TOAST</p>
-    <p id="eggNum">0 EGG</p>
-    <span id=result></span>
+    <p id="drink" class="choiceDisplay" >TEA</p>
+    <p id="toastNum" class="choiceDisplay">0 TOAST</p>
+    <p id="eggNum" class="choiceDisplay">0 EGG</p>
+    <span id=result class="choiceDisplay"></span>
     <br>  
   </div>
-
+  <h2 id=smileText>Wake Breakie up by giving him a morning SIMLE!<h2>
 </body>
-<br>
+<br class='buttons'>
 <button id="drinkBtn" class="button" onclick="drinkBtn()">COFFEE</button>
 
 <button id='AddToast' class="button" onclick="AddToastBtn()">Add Toast</button>
@@ -96,6 +98,15 @@ integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 crossorigin="anonymous"></script>
 
 <script>
+var command;
+var loadingTxt;
+
+$(".button").hide();
+$(".submitbutton").hide();
+$(".selection").hide()
+
+loadingTxt = setInterval(loadDoc, 1000);
+
 function drinkBtn() {
     if ($("#drinkBtn").text() == 'COFFEE'){
       $("#drinkBtn").html('TEA');
@@ -149,6 +160,33 @@ function submit(){
   console.log("start");
 }
 
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("text").innerHTML = this.responseText;
+      str = this.responseText.trim();
+      command = str.split(" ");
+      console.log(command);
+      checkSmile();
+    }
+  };
+  xhttp.open("GET", "{{ url_for('static', filename = './smile.txt') }}", true);
+  xhttp.send();
+}
+
+function checkSmile() {
+  console.log("whileloop" + command[0]);
+  if (command[0] == "smiled"){
+    $(".button").show();
+    $(".submitbutton").show();
+    $(".selection").show();
+    $("#smile").hide();
+    $("#smileText").hide();
+    clearInterval(loadingTxt);
+  }
+}
+
 $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 $(function() {
   $('#submit').bind('click', function() {
@@ -165,8 +203,6 @@ $(function() {
     return false;
     // return url_for('display');
   });
-
-  
 });
 
 
