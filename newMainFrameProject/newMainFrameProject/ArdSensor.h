@@ -16,11 +16,13 @@ class ArdSensor
         int ardRead(const char* command);
         bool writeData(const char* dataOut);
         int readData(char* dataIn);
+		bool exist();
 
     protected:
 
     private:
         HANDLE hComm;
+		bool EXIST;
 
 };
 
