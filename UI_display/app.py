@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
 # app = Flask(__name__)
+from flask import Flask, render_template, request, jsonify, send_from_directory
 
 app = Flask(__name__, static_url_path='')
 
@@ -53,7 +53,8 @@ def home():
 
     #     selection = request.form['selection']
     #     print("yes, input is received!")
-    with open("./static/output.txt", 'w') as outfile:
+    with open("./static/choice.txt", 'w') as outfile:
+        #create empty string 
         outfile.write('')    
     print("Reminder: Run it in the right working Dir as python code")
     return render_template('index.html')
@@ -71,8 +72,8 @@ def send():
 
     printout = "{}, {} Toast, {} Egg".format(drink, toastNum, eggNum)
     print(printout)
-    textinput = "{},{},{}".format(drink[0], toastNum, eggNum)
-    with open("./static/output.txt", 'w') as outfile:
+    textinput = "{},{},{}.".format(drink[0], toastNum, eggNum)
+    with open("./static/choice.txt", 'w') as outfile:
         outfile.write(textinput)
     # if request.method =='POST':
     # render_template('display.html')
@@ -80,6 +81,6 @@ def send():
 
 
 if __name__ == "__main__":
-    #app.run(host= '0.0.0.0', port=8800)
-    # app.run(host= '192.168.1.132', port=8888, debug=False)
-    app.run(host= '10.27.68.170', port=8800, debug=False)
+    app.run(host= '0.0.0.0', port=8800)
+    # app.run(host= '192.168.31.160', port=8888, debug=False)
+    # app.run(host= '192.168.8.103', port=8080, debug=False)

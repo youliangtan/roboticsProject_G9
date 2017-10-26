@@ -77,7 +77,7 @@ function loadDoc() {
       displayResult(command);
     }
   };
-  xhttp.open("GET", "{{ url_for('static', filename = './command.txt') }}", true);
+  xhttp.open("GET", "{{ url_for('static', filename = './status.txt') }}", true);
   xhttp.send();
 }
 
@@ -101,7 +101,7 @@ function displayResult(command){
     case "finish":
       elem.innerHTML = "<b>Done!!! Enjoy your meal ;)</b>";
       document.getElementById("image").src = "{{ url_for('static', filename = './finish.png') }}";
-      setTimeout(restart, 3000);
+      setTimeout(restart, 6000);
       break;
     default:
       elem.innerHTML = "<b>Invalid command</b>";

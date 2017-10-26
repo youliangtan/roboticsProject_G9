@@ -1,6 +1,6 @@
-#include <windows.h>
+// #include <windows.h>
 #include <stdio.h>
-#include <conio.h>
+// #include <conio.h>
 #include <math.h>
 #include "dynamixel.h"
 
