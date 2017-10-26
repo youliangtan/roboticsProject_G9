@@ -36,6 +36,9 @@
     <ClInclude Include="motion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="array_storage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

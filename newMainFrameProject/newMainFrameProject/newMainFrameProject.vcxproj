@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArdSensor.h" />
+    <ClInclude Include="array_storage.h" />
     <ClInclude Include="motion.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />

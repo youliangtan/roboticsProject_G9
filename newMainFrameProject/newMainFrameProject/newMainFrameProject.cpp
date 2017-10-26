@@ -18,7 +18,7 @@
 #pragma comment(lib, "dynamixel.lib")
 using namespace std;
 
-#define PORT_NUM 6
+#define PORT_NUM 1
 
 char ChoiceFilePath[] = "../UI_display/static/choice.txt";
 char StatusFilePath[] = "../UI_display/static/status.txt";
@@ -58,19 +58,25 @@ int ultraRead( ArdSensor* ard1, int N, int numbread)
 	
 		int distance = ard1->ardRead("U");
 		
-		if (distance>0 && distance< 10)
+		if (distance>0 && distance< 13)
 		{
 			startPos = 1;
 			return startPos;
 		}
-		else if ( distance < 20)
+		else if ( distance < 18)
 		{
 			startPos = 2;
 			return startPos;
 		}
-		else 
+		else if(distance <24)
 		{
 			startPos = 3;
+			return startPos;
+		}
+
+		else 
+		{
+			startPos = 4;
 			return startPos;
 		}
 
@@ -163,7 +169,7 @@ int main() {
 				myfile.close();
 				//perform actions..
 				char Drink = choice.drink;
-				if (Drink == 'c')
+				if (Drink == 'C')
 				{
 					printf("coffee ordered by user\n");
 				}
@@ -196,7 +202,7 @@ int main() {
 					printf("Performing number %d motion of bread.\n", i);
 					writeUI("toast");
 					
-					arm_motion(bread, startPos, NULL);
+					arm_motion(bread, startPos, 0);
 					printf("number %d motion of bread is done.\n", i);
 
 				}
@@ -209,14 +215,14 @@ int main() {
 					printf("Performing number %d motion of egg.\n", i);
 					Sleep(5000);
 
-					arm_motion(egg, NULL, i + 1);
+					arm_motion(egg, 0, i + 1);
 					printf("%dst motion of egg is performed.\n", i);
 
 				}
 
 				/*for drinks*/
 				writeUI("drinks");
-				arm_motion(drinks, NULL, NULL);
+				arm_motion(drinks, 0, 0);
 				Sleep(5000);
 
 				//finish and ready to serve!!

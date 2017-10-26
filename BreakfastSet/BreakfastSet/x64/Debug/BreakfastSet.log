@@ -1,2 +1,2 @@
-﻿  BreakfastSet.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\x64\Debug\BreakfastSet.exe
-  BreakfastSet.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\BreakfastSet\x64\Debug\BreakfastSet.pdb (Partial PDB)
+﻿  Main.cpp
+c:\users\user\desktop\new folder\roboticsproject_g9\breakfastset\breakfastset\main.cpp(71): error C3861: '_getch': identifier not found

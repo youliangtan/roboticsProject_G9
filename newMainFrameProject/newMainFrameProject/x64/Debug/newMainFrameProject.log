@@ -1,0 +1,12 @@
+﻿  newMainFrameProject.cpp
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\newmainframeproject.cpp(141): warning C4101: 'Position': unreferenced local variable
+  Generating Code...
+  Compiling...
+  motion.cpp
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.cpp(61): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.cpp(65): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.cpp(93): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\user\desktop\new folder\roboticsproject_g9\newmainframeproject\newmainframeproject\motion.cpp(97): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  newMainFrameProject.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\newMainFrameProject\x64\Debug\newMainFrameProject.exe
+  newMainFrameProject.vcxproj -> C:\Users\User\Desktop\New folder\roboticsProject_G9\newMainFrameProject\x64\Debug\newMainFrameProject.pdb (Partial PDB)
