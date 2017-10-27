@@ -10,7 +10,7 @@ facePath = "haarcascade_frontalface_default.xml"
 
 
 def main():
-    count = 0
+    count = 1
     cap = cv2.VideoCapture(0)
 
     while(True):
@@ -54,10 +54,10 @@ def main():
         if ch & 0xFF == ord('q'):
             break
         
-        if count == 20:
+        if count%20 == 0:
             print ("reached threshold, access link!")
             #access url
-            webbrowser.open("http://10.27.7.251:8080/smile")
+            webbrowser.open("http://10.27.68.170:8080/smile")
 
     cap.release()
     cv2.destroyAllWindows()
