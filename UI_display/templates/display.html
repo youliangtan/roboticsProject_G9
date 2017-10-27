@@ -36,6 +36,12 @@
   <br>
   <p id="result" class="result"></p>
 </div>
+
+<audio controls autoplay style="display:none;" >
+    <source src="{{ url_for('static', filename = './start.mp3') }}" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
 <script>
 var command;
 var countDot = 0;
