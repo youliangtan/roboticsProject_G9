@@ -215,22 +215,28 @@ int main() {
 				{
 					while (true)
 					{
-						static int counter = 0;
+						static int success = 0, fail = 0 ;
 						int value = ard1.ardRead("U");
 						std::cout << value << std::endl;
 						if (value <= 200 && value >= 5)
 						{
-							counter++;
-							std::cout << "Test counter:" << counter << std::endl;
+							success++;
+							fail = 0;
 						}
 						else
 						{
-							counter = 0;
+							success = 0;
+							fail++;
 							std::cout << "Reset" << std::endl;
 						}
-						if (counter > 2) 
+
+						std::cout << "Success counter:" << success << std::endl;
+						std::cout << "Fail counter: " << fail << std::endl;
+
+						if (success > 2 || fail > 2) 
 						{
-							counter = 0;
+							success = 0;
+							fail = 0;
 							break;
 						}
 					}
