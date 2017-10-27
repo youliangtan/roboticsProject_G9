@@ -1,0 +1,211 @@
+<html>
+<head>
+  <style>
+    h2 {
+    color: #051B66;
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+  }
+  /* useless */
+  body {
+    color: #16328F;
+    font-size: 30px;
+    text-align: center;
+    background-color: #F3C5B1;
+    font-weight: bold;
+  }
+
+  div.selection {
+    font-size: 32px;
+    margin: auto;
+    width: 25%;
+    color: white;
+    border: 3px solid #FFFFFF;
+    background-color: #5476E9;
+    padding: 10px;
+    font-weight: bold;
+  }
+
+  img {
+  display: block;
+  margin: 0 auto;
+  }
+
+  .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+  }
+  .submitbutton {
+    background-color: #FF0000;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 2px;
+    cursor: pointer;
+  }
+</style>
+</head>
+
+<body>
+  <h1><br></h1>
+  <!-- <h2>The Breakfast Preparation Robot</h2> -->
+  <img src="{{ url_for('static', filename = './main.png') }}" id="image" hspace="80" style="width:800px;height:350px;">
+  <br >
+  <img id='smile' src="{{ url_for('static', filename = './smile.png') }}" id="image" hspace="80" style="width:350px;height:350px;">
+  <div class='selection'>
+    <p id="drink" class="choiceDisplay" >TEA</p>
+    <p id="toastNum" class="choiceDisplay">0 TOAST</p>
+    <p id="eggNum" class="choiceDisplay">0 EGG</p>
+    <span id=result class="choiceDisplay"></span>
+    <br>  
+  </div>
+  <h2 id=smileText>Wake Breakie up by giving him a morning SIMLE!<h2>
+</body>
+<br class='buttons'>
+<button id="drinkBtn" class="button" onclick="drinkBtn()">COFFEE</button>
+
+<button id='AddToast' class="button" onclick="AddToastBtn()">Add Toast</button>
+<button id='LessToast' class="button" onclick="LessToastBtn()">Less Toast</button>
+
+<button id='AddEgg' class="button" onclick="AddEggBtn()">Add Egg</button>
+<button id='LessEgg' class="button" onclick="LessEggBtn()">Less Egg</button>
+
+<div>
+  <button id='submit'class="submitbutton" >Send selection!</button>
+</div>
+
+
+
+
+<script
+src="https://code.jquery.com/jquery-3.2.1.js"
+integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+crossorigin="anonymous"></script>
+
+<script>
+var command;
+var loadingTxt;
+
+$(".button").hide();
+$(".submitbutton").hide();
+$(".selection").hide()
+
+loadingTxt = setInterval(loadDoc, 1000);
+
+function drinkBtn() {
+    if ($("#drinkBtn").text() == 'COFFEE'){
+      $("#drinkBtn").html('TEA');
+      $("#drink").html('COFFEE');
+    }
+    else{
+      $("#drinkBtn").html('COFFEE');
+      $("#drink").html('TEA');     
+    }
+}
+
+function AddToastBtn(){
+  if (parseInt($("#toastNum").text())  < 2){
+    $("#toastNum").text( parseInt($("#toastNum").text()[0]) + 1 + " TOAST");
+  }
+  else{
+    $("#result").text("Toast Number Not more that 2!!");
+  }
+}
+
+function LessToastBtn(){
+  if (parseInt($("#toastNum").text())  > 0){
+    $("#toastNum").text( parseInt($("#toastNum").text()[0]) - 1 + " TOAST");
+  }
+  else{
+    $("#result").text("Toast Number Not Less that 0!!");
+  }
+}
+
+function AddEggBtn(){
+  if (parseInt($("#eggNum").text())  < 2){
+    $("#eggNum").text( parseInt($("#eggNum").text()[0]) + 1 + " EGG" );
+  }
+  else{
+    $("#result").text("Egg Number Not more that 2!!");
+  }
+}
+
+function LessEggBtn(){
+  if (parseInt($("#eggNum").text())  > 0){
+    $("#eggNum").text( parseInt($("#eggNum").text()[0]) - 1 + " EGG" );
+  }
+  else{
+    $("#result").text("Egg Number Not Less that 0!!");
+  }
+}
+
+function submit(){
+  window.location.href = '/display';
+  // '../'; //one level up
+  console.log("start");
+}
+
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      //document.getElementById("text").innerHTML = this.responseText;
+      str = this.responseText.trim();
+      command = str.split(" ");
+      console.log(command);
+      checkSmile();
+    }
+  };
+  xhttp.open("GET", "{{ url_for('static', filename = './smile.txt') }}", true);
+  xhttp.send();
+}
+
+function checkSmile() {
+  console.log("whileloop" + command[0]);
+  if (command[0] == "smiled"){
+    $(".button").show();
+    $(".submitbutton").show();
+    $(".selection").show();
+    $("#smile").hide();
+    $("#smileText").hide();
+    clearInterval(loadingTxt);
+  }
+}
+
+$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+$(function() {
+  $('#submit').bind('click', function() {
+    $.getJSON($SCRIPT_ROOT + '/send', {
+      // a: $('input[name="num"]').val(),
+      eggNum: $('#eggNum').text()[0],
+      toastNum: $('#toastNum').text()[0],
+      drink: $('#drink').text()
+    }, function(data) {
+      $("#result").text(data.result);
+      // window.location.href = '/display';
+    });
+    setTimeout(submit, 2000);
+    return false;
+    // return url_for('display');
+  });
+});
+
+
+</script>
+
+</html>
