@@ -2,6 +2,13 @@ import numpy as np
 import cv2
 import webbrowser
 import time
+import freenect
+
+
+def get_video():
+    array,_ = freenect.sync_get_video()
+    array = cv2.cvtColor(array,cv2.COLOR_RGB2BGR)
+    return array
 
 img = cv2.imread("faces.jpeg",1)
 
@@ -13,10 +20,18 @@ def main():
     lastdetection = time.time()
 
     count = 1
+
+    #capture from webcam
     cap = cv2.VideoCapture(0)
 
     while(True):
+
+        #capture from webcam
         ret, frame = cap.read()
+
+        #capture from kinect
+        frame = get_video()
+
         frame = cv2.resize(frame,(0,0),fx=1,fy=1)
         # cv2.imshow("Frame",frame)
 
