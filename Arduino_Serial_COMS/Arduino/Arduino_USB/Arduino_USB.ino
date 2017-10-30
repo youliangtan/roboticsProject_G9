@@ -1,9 +1,14 @@
-#define trigPin 12
-#define echoPin 13
+#define trigPin 13
+#define echoPin 12
 #define intPin A0
+#define Servo_move_time 750
+#define Servo_delay 1000
+#define delay_margin 2000
+#include <Servo.h>
 
+Servo servoGate;
 String inputString = "";
-String inputMode[2] = {"I","U"};
+String inputMode[2] = {"D","U"};
 bool stringComplete = false;
 long distance = 0; 
 long intensity = 0;
@@ -14,14 +19,24 @@ void setup() {
   pinMode(echoPin, INPUT);
   digitalWrite(trigPin, LOW);
   digitalWrite(echoPin, LOW);
+  servoGate.attach(9);//this is the activated motor
   inputString.reserve(200);
 }
 
 void loop() {
   if(stringComplete){
   if(inputString == inputMode[0]){
-    intensity = analogRead(intPin);
-    Serial.print(intensity);
+    Serial.print(2*Servo_move_time + Servo_delay + delay_margin);
+    delay(1000);
+    //open gate
+    servoGate.write(180);
+    delay(Servo_move_time);
+    servoGate.write(95);
+    delay(Servo_delay);
+    //close gate
+    servoGate.write(0);
+    delay(Servo_move_time);
+    servoGate.write(95);
   }
   else if(inputString == inputMode[1]){
     long duration;

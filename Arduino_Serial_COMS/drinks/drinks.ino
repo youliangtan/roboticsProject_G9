@@ -23,15 +23,15 @@ void loop() {
   delay(1000);
   
   //open gate
-  servoGate.write(0);
-  delay(600);
+  servoGate.write(180);
+  delay(900);
   servoGate.write(95);
   
   delay(1000);
   
   //close gate
-  servoGate.write(180);
-  delay(600);
+  servoGate.write(0);
+  delay(900);
   servoGate.write(95);
   Serial.print("DONE\n");
 

@@ -148,8 +148,8 @@ int main() {
 	int N = 0;
 	int Position;
 	int quit = 3;
-	int dyna_port = 9;
-	int ard_port = 3;
+	int dyna_port;
+	int ard_port;
 	
 	
 	printf("Arduino Port:");
@@ -177,7 +177,6 @@ int main() {
 			if (choice.d == NULL)
 			{
 				//wait until user input the string and UI send the string to txt file
-				writeUI("");
 				printf("file is not ready.\n");
 				Sleep(1000);
 			}
@@ -265,9 +264,18 @@ int main() {
 				/*for drinks*/
 				writeUI("drinks");
 				arm_motion(drinks_pick, 0);
-				/*Arduino water dispenser
-				ard1.ardRead("D");
-				*/
+				/*Arduino water dispenser*/
+				int delay = ard1.ardRead("D");
+				if(delay)
+				{
+					Sleep(delay);
+					std::cout << "Delay " << delay << "ms" << std::endl;
+				}
+				else
+				{
+					Sleep(2000);
+					std::cout << "Delay 2000ms" << std::endl;
+				}
 				arm_motion(drinks_tray, 0);
 
 				//finish and ready to serve!!

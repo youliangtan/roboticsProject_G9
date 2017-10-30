@@ -90,7 +90,7 @@ def send():
 
 
 if __name__ == "__main__":
-    app.run(host= '0.0.0.0', port=5000)
+    # app.run(host= '0.0.0.0', port=5000)
     # app.run(host= '192.168.31.160', port=8888, debug=False)
-    # app.run(host= '10.27.68.170', port=8080, debug=False)
+    app.run(host= '10.27.68.170', port=8080, debug=False)
 
