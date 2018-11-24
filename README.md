@@ -1,4 +1,4 @@
-This is basically useless, but just for my backup. =)
+**This is basically useless, but just for my backup. =)**
 
 Arduino_Serial_COMS: 	Arduino input sensor to main, serial printout
 
